@@ -1,0 +1,99 @@
+body{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height:100vh;
+}
+#first-button{
+    display: flex;
+    perspective: 400px;
+    gap:0px;
+    :focus{
+        #front-face{
+            transform: rotateY(0deg);
+        }
+        #side-face{
+            transform: rotateY(90deg);
+        }
+    }
+    transition: transform 5000ms;
+}
+@mixin standard{
+    border-style: solid;
+    box-sizing: border-box;
+    border-width: 3px;
+    border-color: black;
+    // border-collapse: collapse !important;
+    background-color: red;
+    font-size: x-large;
+    align-items: center;
+    padding:2%;
+    width:max-content;
+    white-space: nowrap;
+    width:20vh;
+    height:7vh;
+    text-align: center;
+    align-content: center;
+}
+#front-face{
+    @include standard();
+    transform-origin: left;
+    transform: rotateY(-30deg);
+    transition: transform 200ms ease-in;
+    z-index: 1;
+}
+#front-face:hover{
+    transform: rotateY(0deg);
+}
+#front-face:hover ~ #side-face { transform: rotateY(90deg); }
+#side-face{
+    @include standard();
+    width:12vh;
+    transform-origin: left;
+    transform: rotateY(75deg) translateX(-90px) scaleY(1);
+    transition: transform 200ms ease-in;
+}
+//first half css over
+#second-button{
+    div{
+        @include standard();
+    }
+    display: flex;
+    align-items: center;
+    perspective: 500px;
+    transition: 400ms;
+}
+#second-button:hover{
+    transform: translateX(20px) translateY(-10px);
+    transition: 500ms;
+    #top,#right,#left,#front,#bottom{
+        transform: rotateX(0deg) rotateY(0) skew(0);
+        transition: transform 400ms;
+    }
+    #right{
+        transform: scaleX(0.5);
+    }
+    #left{
+        transform: scaleX(0.5) translateX(2px);
+    }
+}
+#front{
+    position: relative;
+    z-index: 1;
+}
+#top{
+    transform-origin: bottom right;
+    transform: rotateX(60deg) skewX(-30deg);
+}
+#bottom{
+    transform-origin: top right;
+    transform: rotateX(90deg) skewX(30deg);
+}
+#right{
+    transform-origin: left;
+    transform: rotateY(65deg) skewY(-16deg) scaleX(1);
+}
+#left{
+    transform-origin: right;
+    transform: rotateY(-90deg) scaleX(0.95);
+}
